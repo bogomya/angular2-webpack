@@ -1,0 +1,44 @@
+<form [formGroup]="loginFormModel"
+      (ngSubmit)="onLogin()"
+      novalidate>
+
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input id="username"
+               placeholder="Username"
+               class="form-control"
+               type="text"
+               formControlName="username"
+        >
+        <span class="help-block"
+              [class.hidden]="loginFormModel.get('username').pristine || !loginFormModel.hasError('required', 'username')"
+        >
+            Username is required
+        </span>
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password"
+               placeholder="Password"
+               class="form-control"
+               type="text"
+               formControlName="password"
+        >
+        <span class="help-block"
+              [class.hidden]="loginFormModel.get('password').pristine || !loginFormModel.hasError('required', 'password')"
+        >
+            Password is required
+        </span>
+    </div>
+
+    <div *ngIf="wasLoginError">
+        <span>Username or password is incorrect</span>
+    </div>
+
+    <div class="form-group">
+        <button type="submit"
+                class="btn btn-primary btn-block">Login
+        </button>
+    </div>
+</form>
